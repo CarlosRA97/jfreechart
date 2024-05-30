@@ -352,25 +352,25 @@ public class XYSplineRenderer extends XYLineAndShapeRenderer {
                 
                 // we need at least two points to draw something
                 Point2D cp0 = s.points.get(0);
-                s.seriesPath.moveTo(cp0.getX(), cp0.getY());
+                s.seriesPath.moveTo((float) cp0.getX(), (float) cp0.getY());
                 if (this.fillType != FillType.NONE) {
                     if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
-                        s.fillArea.moveTo(origin.getX(), cp0.getY());
+                        s.fillArea.moveTo((float) origin.getX(), (float) cp0.getY());
                     } else {
-                        s.fillArea.moveTo(cp0.getX(), origin.getY());
+                        s.fillArea.moveTo((float) cp0.getX(), (float) origin.getY());
                     }
-                    s.fillArea.lineTo(cp0.getX(), cp0.getY());
+                    s.fillArea.lineTo((float) cp0.getX(), (float) cp0.getY());
                 }
                 if (s.points.size() == 2) {
                     // we need at least 3 points to spline. Draw simple line
                     // for two points
                     Point2D cp1 = s.points.get(1);
                     if (this.fillType != FillType.NONE) {
-                        s.fillArea.lineTo(cp1.getX(), cp1.getY());
-                        s.fillArea.lineTo(cp1.getX(), origin.getY());
+                        s.fillArea.lineTo((float) cp1.getX(), (float) cp1.getY());
+                        s.fillArea.lineTo((float) cp1.getX(), (float) origin.getY());
                         s.fillArea.closePath();
                     }
-                    s.seriesPath.lineTo(cp1.getX(), cp1.getY());
+                    s.seriesPath.lineTo((float) cp1.getX(), (float) cp1.getY());
                 } else {
                     // construct spline
                     int np = s.points.size(); // number of points
@@ -428,11 +428,11 @@ public class XYSplineRenderer extends XYLineAndShapeRenderer {
                 // Add last point @ y=0 for fillPath and close path
                 if (this.fillType != FillType.NONE) {
                     if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
-                        s.fillArea.lineTo(origin.getX(), s.points.get(
+                        s.fillArea.lineTo((float) origin.getX(), (float) s.points.get(
                                 s.points.size() - 1).getY());
                     } else {
-                        s.fillArea.lineTo(s.points.get(
-                                s.points.size() - 1).getX(), origin.getY());
+                        s.fillArea.lineTo((float) s.points.get(
+                                s.points.size() - 1).getX(), (float) origin.getY());
                     }
                     s.fillArea.closePath();
                 }
